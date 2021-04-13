@@ -1,14 +1,22 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { push } from "connected-react-router";
+import { signInAction } from "../reducks/users/actions";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const selector = useSelector((state) => state);
+
   return (
     <div>
       <h2>Login</h2>
-      <button onClick={() => dispatch(push("/"))}>Login</button>
+      <button
+        onClick={() => {
+          dispatch(signInAction({ uid: "00001", username: "Ayumi" }));
+          dispatch(push("/"));
+        }}
+      >
+        Login
+      </button>
     </div>
   );
 };
