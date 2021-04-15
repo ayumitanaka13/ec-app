@@ -5,4 +5,7 @@ export const initialState = {
     uid: "",
     username: "",
   },
+  products: {
+    list: [],
+  },
 };
