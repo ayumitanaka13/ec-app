@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
+import ImageArea from "../components/Products/ImageArea";
 import { PrimaryButton, SelectBox, TextInput } from "../components/UIkit";
 import { saveProduct } from "../reducks/products/operations";
 
@@ -10,6 +11,7 @@ const ProductEdit = () => {
     [description, setDescription] = useState(""),
     [category, setCategory] = useState(""),
     [gender, setGender] = useState(""),
+    [images, setImages] = useState([]),
     [price, setPrice] = useState("");
 
   const inputName = useCallback(
@@ -47,6 +49,7 @@ const ProductEdit = () => {
     <section>
       <h2 className="u-text__headline u-text-center">Edit item</h2>
       <div className="c-section-container">
+        <ImageArea images={images} setImages={setImages} />
         <TextInput
           fullWidth={true}
           label={"Name"}
@@ -96,7 +99,9 @@ const ProductEdit = () => {
           <PrimaryButton
             label={"Save"}
             onClick={() =>
-              dispatch(saveProduct(name, description, category, gender, price))
+              dispatch(
+                saveProduct(name, description, category, gender, price, images)
+              )
             }
           />
         </div>
